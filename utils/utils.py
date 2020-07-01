@@ -497,7 +497,7 @@ def build_targets(p, targets, model):
     style = 'rect4'
     for i in range(det.nl):
         anchors = det.anchors[i]
-        gain[2:] = torch.tensor(p[i].shape)[[3, 2, 3, 2]]  # xyxy gain
+        gain[2:] = torch.tensor(p[i].shape, dtype=torch.int)[[3, 2, 3, 2]]  # xyxy gain
 
         # Match targets to anchors
         a, t, offsets = [], targets * gain, 0
@@ -585,7 +585,7 @@ def non_max_suppression(prediction, conf_thres=0.1, iou_thres=0.6, merge=False, 
 
         # Filter by class
         if classes:
-            x = x[(x[:, 5:6] == torch.tensor(classes, device=x.device)).any(1)]
+            x = x[(x[:, 5:6] == torch.tensor(classes, device=x.device, dtype=torch.int)).any(1)]
 
         # Apply finite constraint
         # if not torch.isfinite(x).all():
@@ -860,7 +860,7 @@ def apply_classifier(x, model, img, im0):
                 im /= 255.0  # 0 - 255 to 0.0 - 1.0
                 ims.append(im)
 
-            pred_cls2 = model(torch.Tensor(ims).to(d.device)).argmax(1)  # classifier prediction
+            pred_cls2 = model(torch.Tensor(ims, dtype=torch.int).to(d.device)).argmax(1)  # classifier prediction
             x[i] = x[i][pred_cls1 == pred_cls2]  # retain matching class detections
 
     return x

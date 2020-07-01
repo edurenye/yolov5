@@ -181,7 +181,7 @@ def train(hyp):
 
     # Class frequency
     labels = np.concatenate(dataset.labels, 0)
-    c = torch.tensor(labels[:, 0])  # classes
+    c = torch.tensor(labels[:, 0], dtype=torch.int)  # classes
     # cf = torch.bincount(c.long(), minlength=nc) + 1.
     # model._initialize_biases(cf.to(device))
     if tb_writer:
