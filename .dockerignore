@@ -5,6 +5,8 @@
 runs
 output
 coco
+pigall
+results
 storage.googleapis.com
 
 data/samples/*

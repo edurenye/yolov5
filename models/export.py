@@ -43,7 +43,7 @@ if __name__ == '__main__':
 
         f = opt.weights.replace('.pt', '.onnx')  # filename
         model.fuse()  # only for ONNX
-        torch.onnx.export(model, img, f, verbose=False, opset_version=12, input_names=['images'],
+        torch.onnx.export(model, img, f, verbose=True, opset_version=12, input_names=['images'],
                           output_names=['output'])  # output_names=['classes', 'boxes']
 
         # Checks

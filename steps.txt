@@ -1,0 +1,8 @@
+python train.py --img 416 --batch 8 --epochs 20 --data data/pigallv4.yaml --cfg models/yolov5x.yaml
+
+python models/export.py --weights weights/best.pt --img 416 --batch 1 > run.txt
+
+python detect_tflite.py --output output.jpg --image data/samples/sample.jpg --model weights/best.pt --model_type pytorch
+
+python detect_tflite.py --output output.mp4 --video data/samples/sample.mp4 --model weights/best.pt --model_type pytorch
+

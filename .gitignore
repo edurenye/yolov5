@@ -40,6 +40,9 @@ pycocotools/*
 results*.txt
 gcp_test*.sh
 
+results
+pigall_datasets
+
 # MATLAB GitIgnore -----------------------------------------------------------------------------------------------------
 *.m~
 *.mat
