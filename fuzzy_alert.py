@@ -28,8 +28,8 @@ class FuzzyDangerDetector:
         rule4 = ctrl.Rule(growth['negative'], danger['very_low'])
         rule5 = ctrl.Rule(growth['fast_negative'], danger['very_low'])
         rule6 = ctrl.Rule(position['center'], danger['very_high'])
-        rule7 = ctrl.Rule(position['left'], danger['medium'])
-        rule8 = ctrl.Rule(position['right'], danger['medium'])
+        rule7 = ctrl.Rule(position['left'], danger['low'])
+        rule8 = ctrl.Rule(position['right'], danger['low'])
 
         # Create the control system.
         crosswalk_ctrl = ctrl.ControlSystem([rule1, rule2, rule3, rule4, rule5, rule6, rule7, rule8])
